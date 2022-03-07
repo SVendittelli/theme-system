@@ -1,7 +1,7 @@
 {
-  "npmScope": "theme",
+  "npmScope": "theme-system",
   "affected": {
-    "defaultBase": "master"
+    "defaultBase": "main"
   },
   "cli": {
     "defaultCollection": "@nrwl/react"
@@ -15,9 +15,15 @@
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
+      "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ],
+        "accessToken": "YzFmN2E4ZTctNTEzMS00ZjI3LWFkN2YtYTcwYTc0NTI5NWE0fHJlYWQtd3JpdGU="
       }
     }
   },
