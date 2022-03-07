@@ -1,0 +1,28 @@
+{
+  "root": "apps/theme-e2e",
+  "sourceRoot": "apps/theme-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/theme-e2e/cypress.json",
+        "devServerTarget": "theme:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "theme:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/theme-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["theme"]
+}
