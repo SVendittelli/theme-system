@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { Message } from '@theme/api-interfaces';
+import { Message } from '@theme-system/api-interfaces';
 
 const app = express();
 
