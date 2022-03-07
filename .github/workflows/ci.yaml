@@ -24,14 +24,17 @@ jobs:
           node-version: '16'
       - run: npm ci
       - run: npx nx-cloud start-ci-run
-      - run: npx nx affected --target=build --parallel --max-parallel=3
-      - run: npx nx affected --target=test --parallel --max-parallel=2
+      - run: npx nx affected --target=build --parallel
+      - run: npx nx affected --target=lint --parallel
+      - run: npx nx affected --target=test --parallel=2
+      - run: npx nx affected --target=e2e --parallel=1
       - run: npx nx-cloud stop-all-agents
   pr:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
     steps:
       - uses: actions/checkout@v2
+        name: Checkout PR ${{ github.event.pull_request.number }}
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
@@ -42,12 +45,14 @@ jobs:
           node-version: '16'
       - run: npm ci
       - run: npx nx-cloud start-ci-run
-      - run: npx nx affected --target=build --parallel --max-parallel=3
-      - run: npx nx affected --target=test --parallel --max-parallel=2
+      - run: npx nx affected --target=build --parallel
+      - run: npx nx affected --target=lint --parallel
+      - run: npx nx affected --target=test --parallel=2
+      - run: npx nx affected --target=e2e --parallel=1
       - run: npx nx-cloud stop-all-agents
   agents:
     runs-on: ubuntu-latest
-    name: Agent ${{ matrix.agent }}
+    name: Nx Agent ${{ matrix.agent }}
     timeout-minutes: 60
     strategy:
       matrix:
